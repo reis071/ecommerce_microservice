@@ -1,0 +1,135 @@
+services:
+
+    order-db:
+          image: mongo
+          restart: always
+          environment:
+            - MONGO_INITDB_ROOT_USERNAME=admin
+            - MONGO_INITDB_ROOT_PASSWORD=admin
+          ports:
+            - "27017:27017"
+
+    account-db:
+          image: postgres:16-alpine
+          container_name: accounts-postgres
+          environment:
+            - POSTGRES_DB=account
+            - POSTGRES_USER=account
+            - POSTGRES_PASSWORD=account
+          ports:
+            - "5432:5432"
+          volumes:
+            - account_data:/var/lib/postgresql/data
+          healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U account -d account"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+          networks:
+            - ms_net
+
+
+    product-db:
+            image: postgres:16-alpine
+            container_name: product-postgres
+            environment:
+              - POSTGRES_DB=product
+              - POSTGRES_USER=product
+              - POSTGRES_PASSWORD=product
+            ports:
+              - "5433:5432"
+            volumes:
+              - product_data:/var/lib/postgresql/data
+            healthcheck:
+              test: ["CMD-SHELL", "pg_isready -U product -d product"]
+              interval: 10s
+              timeout: 5s
+              retries: 5
+            networks:
+              - ms_net
+
+    payment-db:
+            image: postgres:16-alpine
+            container_name: payment-postgres
+            environment:
+              - POSTGRES_DB=payment
+              - POSTGRES_USER=payment
+              - POSTGRES_PASSWORD=payment
+            ports:
+              - "5434:5432"
+            volumes:
+              - payment_data:/var/lib/postgresql/data
+            healthcheck:
+              test: [ "CMD-SHELL", "pg_isready -U payment -d payment" ]
+              interval: 10s
+              timeout: 5s
+              retries: 5
+            networks:
+              - ms_net
+
+    inventory-db:
+            image: postgres:16-alpine
+            container_name: invetory-postgres
+            environment:
+              - POSTGRES_DB=inventory
+              - POSTGRES_USER=inventory
+              - POSTGRES_PASSWORD=inventory
+            ports:
+              - "5435:5432"
+            volumes:
+              - inventory_data:/var/lib/postgresql/data
+            healthcheck:
+              test: [ "CMD-SHELL", "pg_isready -U inventory -d inventory" ]
+              interval: 10s
+              timeout: 5s
+              retries: 5
+            networks:
+              - ms_net
+
+
+    kafka:
+            image: obsidiandynamics/kafka
+            container_name: kafka-server
+            restart: "no"
+            networks:
+              - ms_net
+            ports:
+              - "2181:2181"
+              - "9092:9092"
+            environment:
+              KAFKA_LISTENERS: "INTERNAL://:29092,EXTERNAL://:9092"
+              KAFKA_ADVERTISED_LISTENERS: "INTERNAL://kafka:29092,EXTERNAL://localhost:9092"
+              KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT"
+              KAFKA_INTER_BROKER_LISTENER_NAME: "INTERNAL"
+              KAFKA_ZOOKEEPER_SESSION_TIMEOUT: "6000"
+              KAFKA_RESTART_ATTEMPTS: "10"
+              KAFKA_RESTART_DELAY: "5"
+              ZOOKEEPER_AUTOPURGE_PURGE_INTERVAL: "0"
+
+    redpanda-console:
+              container_name: redpanda-console
+              image: docker.redpanda.com/redpandadata/console:v2.3.8
+              restart: on-failure
+              entrypoint: /bin/sh
+              command: -c "echo \"$$CONSOLE_CONFIG_FILE\" > /tmp/config.yml; /app/console"
+              networks:
+                - ms_net
+              ports:
+                - "8070:8070"
+              environment:
+                CONFIG_FILEPATH: /tmp/config.yml
+                CONSOLE_CONFIG_FILE: |
+                  kafka:
+                    brokers: ["kafka-server:29092"]
+              depends_on:
+                - kafka
+
+volumes:
+  account_data:
+  product_data:
+  payment_data:
+  inventory_data:
+
+networks:
+  ms_net:
+    driver: bridge

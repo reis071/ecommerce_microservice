@@ -1,0 +1,27 @@
+spring:
+    application:
+      name: accounts
+
+    cloud:
+      config:
+        enabled: false
+        import-check:
+          enabled: false
+
+    datasource:
+        url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/accounts}
+        driver-class-name: org.postgresql.Driver
+        username: ${SPRING_DATASOURCE_USERNAME:accounts}
+        password: ${SPRING_DATASOURCE_PASSWORD:accounts}
+
+    jpa:
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+      hibernate:
+          ddl-auto: update
+
+server:
+  port: 8081
+
+jwt:
+  secret: "change-this-secret-to-a-long-random-string-32-bytes-minimum"
+  expirationMillis: 3600000
