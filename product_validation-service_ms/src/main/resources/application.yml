@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: product
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/product}
+    driver-class-name: org.postgresql.Driver
+    username: ${SPRING_DATASOURCE_USERNAME:product}
+    password: ${SPRING_DATASOURCE_PASSWORD:product}
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:29092}
+    topic:
+        product-events: product-events
+    consumer:
+        group-id: product-service-group
+        auto-offset-reset: latest
+
+logging:
+  level:
+    org:
+      apache:
+          kafka: OFF
+
+server:
+  port: 8082
+
