@@ -1,6 +1,7 @@
 package ecommerce_micro.project.productservice.settings;
 
-import ecommerce_micro.project.orchestratorservice_ms.config.kafka.settings.enums.ETopics;
+
+import ecommerce_micro.project.productservice.settings.enums.ETopics;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;

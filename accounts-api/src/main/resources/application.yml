@@ -2,6 +2,7 @@ spring:
     application:
       name: accounts
 
+
     cloud:
       config:
         enabled: false
@@ -9,10 +10,10 @@ spring:
           enabled: false
 
     datasource:
-        url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/accounts}
+        url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/account}
         driver-class-name: org.postgresql.Driver
-        username: ${SPRING_DATASOURCE_USERNAME:accounts}
-        password: ${SPRING_DATASOURCE_PASSWORD:accounts}
+        username: ${SPRING_DATASOURCE_USERNAME:account}
+        password: ${SPRING_DATASOURCE_PASSWORD:account}
 
     jpa:
       database-platform: org.hibernate.dialect.PostgreSQLDialect

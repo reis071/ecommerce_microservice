@@ -1,6 +1,6 @@
 package ecommerce_micro.project.orderservice_ms.domain.history;
 
-import ecommerce_micro.project.orderservice_ms.config.kafka.settings.enums.ESagaStatus;
+import ecommerce_micro.project.orderservice_ms.config.mskafka.settings.enums.ESagaStatus;
 
 import java.time.LocalDateTime;
 

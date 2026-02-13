@@ -16,7 +16,11 @@ spring:
   kafka:
     bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:29092}
     topic:
-        product-events: product-events
+      consume:
+        product-validator-success: product-validator-success
+        product-validator-fail: product-validator-fail
+      producer:
+        orchestrator: orchestrator
     consumer:
         group-id: product-service-group
         auto-offset-reset: latest

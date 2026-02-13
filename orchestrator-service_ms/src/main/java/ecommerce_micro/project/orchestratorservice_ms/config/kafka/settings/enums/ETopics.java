@@ -7,7 +7,7 @@ public enum ETopics {
     ORCHESTRATOR("orchestrator"),
     FINISH_SUCCESS("finish-success"),
     FINISH_FAIL("finish-fail"),
-    PRODUCT_VALIDATOR_SUCCES("product-validator-success"),
+    PRODUCT_VALIDATOR_SUCCESS("product-validator-success"),
     PRODUCT_VALIDATOR_FAIL("product-validator-fail"),
     PAYMENT_SUCCESS("payment-success"),
     PAYMENT_FAIL("payment-fail"),

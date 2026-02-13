@@ -3,6 +3,13 @@ spring:
     name: orchestrator
   kafka:
     bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    topics:
+      consume:
+        orchestrator: orchestrator
+        start-saga: start-saga
+        final-success: final-success
+        final-fail: final-fail
+
     consumer:
       group-id: orchestrator-group
       auto-offset-reset: latest

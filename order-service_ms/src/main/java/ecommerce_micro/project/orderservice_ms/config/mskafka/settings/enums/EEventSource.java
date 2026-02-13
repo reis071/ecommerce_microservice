@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.config.kafka.settings.enums;
+package ecommerce_micro.project.orderservice_ms.config.mskafka.settings.enums;
 
 public enum EEventSource {
 

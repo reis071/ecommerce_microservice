@@ -98,7 +98,7 @@ public class kafka {
 
     @Bean
     public NewTopic createProductValidatorSuccessTopic() {
-        return createTopic(ETopics.PRODUCT_VALIDATOR_SUCCES.getTopicName());
+        return createTopic(ETopics.PRODUCT_VALIDATOR_SUCCESS.getTopicName());
     }
 
     @Bean

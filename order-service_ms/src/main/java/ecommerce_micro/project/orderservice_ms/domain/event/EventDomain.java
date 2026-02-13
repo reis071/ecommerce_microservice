@@ -1,7 +1,7 @@
 package ecommerce_micro.project.orderservice_ms.domain.event;
 
-import ecommerce_micro.project.orderservice_ms.config.kafka.settings.enums.EEventSource;
-import ecommerce_micro.project.orderservice_ms.config.kafka.settings.enums.ESagaStatus;
+import ecommerce_micro.project.orderservice_ms.config.mskafka.settings.enums.EEventSource;
+import ecommerce_micro.project.orderservice_ms.config.mskafka.settings.enums.ESagaStatus;
 import ecommerce_micro.project.orderservice_ms.domain.history.HistoryDomain;
 import ecommerce_micro.project.orderservice_ms.domain.order.OrderDomain;
 
