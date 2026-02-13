@@ -1,6 +1,6 @@
-package ecommerce_micro.project.orchestratorservice_ms.core.config;
+package ecommerce_micro.project.productservice.settings;
 
-import ecommerce_micro.project.orchestratorservice_ms.topics.enums.ETopics;
+import ecommerce_micro.project.orchestratorservice_ms.config.kafka.settings.enums.ETopics;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -15,8 +15,6 @@ import org.springframework.kafka.core.*;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static ecommerce_micro.project.orchestratorservice_ms.topics.enums.ETopics.*;
 
 @EnableKafka
 @Configuration
@@ -80,57 +78,57 @@ public class kafka {
 
     @Bean
     public NewTopic createStartSagaTopic() {
-        return createTopic(START_SAGA.getTopicName());
+        return createTopic(ETopics.START_SAGA.getTopicName());
     }
 
     @Bean
     public NewTopic createOrchestratorTopic() {
-        return createTopic(ORCHESTRATOR.getTopicName());
+        return createTopic(ETopics.ORCHESTRATOR.getTopicName());
     }
 
     @Bean
     public NewTopic createFinishSuccessTopic() {
-        return createTopic(FINISH_SUCCESS.getTopicName());
+        return createTopic(ETopics.FINISH_SUCCESS.getTopicName());
     }
 
     @Bean
     public NewTopic createFinishFailTopic() {
-        return createTopic(FINISH_FAIL.getTopicName());
+        return createTopic(ETopics.FINISH_FAIL.getTopicName());
     }
 
     @Bean
     public NewTopic createProductValidatorSuccessTopic() {
-        return createTopic(PRODUCT_VALIDATOR_SUCCES.getTopicName());
+        return createTopic(ETopics.PRODUCT_VALIDATOR_SUCCES.getTopicName());
     }
 
     @Bean
     public NewTopic createProductValidatorFailTopic() {
-        return createTopic(PRODUCT_VALIDATOR_FAIL.getTopicName());
+        return createTopic(ETopics.PRODUCT_VALIDATOR_FAIL.getTopicName());
     }
 
     @Bean
     public NewTopic createPaymentSuccessTopic() {
-        return createTopic(PAYMENT_SUCCESS.getTopicName());
+        return createTopic(ETopics.PAYMENT_SUCCESS.getTopicName());
     }
 
     @Bean
     public NewTopic createPaymentFailTopic() {
-        return createTopic(PAYMENT_FAIL.getTopicName());
+        return createTopic(ETopics.PAYMENT_FAIL.getTopicName());
     }
 
     @Bean
     public NewTopic createInventorySuccessTopic() {
-        return createTopic(INVENTORY_SUCCESS.getTopicName());
+        return createTopic(ETopics.INVENTORY_SUCCESS.getTopicName());
     }
 
     @Bean
     public NewTopic createInventoryFailTopic() {
-        return createTopic(INVENTORY_FAIL.getTopicName());
+        return createTopic(ETopics.INVENTORY_FAIL.getTopicName());
     }
 
     @Bean
     public NewTopic createNotifyEndTopic() {
-        return createTopic(NOTIFY_END.getTopicName());
+        return createTopic(ETopics.NOTIFY_END.getTopicName());
     }
 
 }

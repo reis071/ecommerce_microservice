@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orchestratorservice_ms.topics.enums;
+package ecommerce_micro.project.orderservice_ms.config.kafka.settings.enums;
 
 
 public enum ETopics {
