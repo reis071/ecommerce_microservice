@@ -5,6 +5,7 @@ import ecommerce_micro.project.orderservice_ms.config.mskafka.settings.enums.ESa
 import ecommerce_micro.project.orderservice_ms.domain.history.HistoryDomain;
 import ecommerce_micro.project.orderservice_ms.domain.order.OrderDomain;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class EventDomain {
@@ -12,22 +13,13 @@ public class EventDomain {
     private String id;
     private String transactionId;
     private String orderId;
-    private OrderDomain order;
-    private EEventSource source;
-    private ESagaStatus status;
+    private OrderDomain payload;
+    private String source;
+    private String status;
     private List<HistoryDomain> history;
+    private LocalDateTime    createdAt;
 
     public EventDomain() {
-    }
-
-    public EventDomain(String id, String transactionId, String orderId, OrderDomain order, EEventSource source, ESagaStatus status, List<HistoryDomain> history) {
-        this.id = id;
-        this.transactionId = transactionId;
-        this.orderId = orderId;
-        this.order = order;
-        this.source = source;
-        this.status = status;
-        this.history = history;
     }
 
     public String getId() {
@@ -54,27 +46,27 @@ public class EventDomain {
         this.orderId = orderId;
     }
 
-    public OrderDomain getOrder() {
-        return order;
+    public OrderDomain getPayload() {
+        return payload;
     }
 
-    public void setOrder(OrderDomain order) {
-        this.order = order;
+    public void setPayload(OrderDomain payload) {
+        this.payload = payload;
     }
 
-    public EEventSource getSource() {
+    public String getSource() {
         return source;
     }
 
-    public void setSource(EEventSource source) {
+    public void setSource(String source) {
         this.source = source;
     }
 
-    public ESagaStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(ESagaStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -86,15 +78,25 @@ public class EventDomain {
         this.history = history;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @Override
     public String toString() {
         return "EventDomain{" +
                 "id='" + id + '\'' +
                 ", transactionId='" + transactionId + '\'' +
                 ", orderId='" + orderId + '\'' +
-                ", order=" + order +
+                ", payload=" + payload +
                 ", source='" + source + '\'' +
                 ", status='" + status + '\'' +
                 ", history=" + history +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }

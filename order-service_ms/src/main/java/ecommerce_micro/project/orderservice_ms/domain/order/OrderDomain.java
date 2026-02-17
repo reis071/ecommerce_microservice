@@ -8,7 +8,7 @@ import java.util.List;
 public class OrderDomain {
 
     private String id;
-    private List<OrderProductDomain> orderProducts;
+    private List<OrderProductDomain> products;
     private LocalDateTime createdAt;
     private String transactionId;
     private double totalAmount;
@@ -19,7 +19,7 @@ public class OrderDomain {
 
     public OrderDomain(String id, List<OrderProductDomain> orderProducts, LocalDateTime createdAt, String transactionId, double totalAmount, int totalItems) {
         this.id = id;
-        this.orderProducts = orderProducts;
+        this.products = orderProducts;
         this.createdAt = createdAt;
         this.transactionId = transactionId;
         this.totalAmount = totalAmount;
@@ -35,11 +35,11 @@ public class OrderDomain {
     }
 
     public List<OrderProductDomain> getOrderProducts() {
-        return orderProducts;
+        return products;
     }
 
     public void setOrderProducts(List<OrderProductDomain> orderProducts) {
-        this.orderProducts = orderProducts;
+        this.products = orderProducts;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -77,7 +77,7 @@ public class OrderDomain {
     public String toString() {
         return "OrderDomain{" +
                 "id='" + id + '\'' +
-                ", orderProducts=" + orderProducts +
+                ", products=" + products +
                 ", createdAt=" + createdAt +
                 ", transactionId='" + transactionId + '\'' +
                 ", totalAmount=" + totalAmount +

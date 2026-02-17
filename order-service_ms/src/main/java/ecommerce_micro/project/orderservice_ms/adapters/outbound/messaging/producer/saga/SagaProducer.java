@@ -1,5 +1,6 @@
 package ecommerce_micro.project.orderservice_ms.adapters.outbound.messaging.producer.saga;
 
+import ecommerce_micro.project.orderservice_ms.adapters.outbound.messaging.avro.EventAvro;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,17 +12,19 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class SagaProducer {
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, EventAvro> eventAvroKafkaTemplate;
 
-    @Value("${spring.kafka.topic.start-saga}")
+    @Value("${spring.kafka.producer.topic.start-saga}")
     private String sagaTopic;
 
-    public void sendEvent(String payload) {
+    public void sendEvent(EventAvro eventAvro) {
         try {
-        log.info("Sending message to saga topic: {}", sagaTopic);
-        kafkaTemplate.send(sagaTopic, payload);
-        }catch (Exception e){
-            log.error("Error sending message to saga topic: {}", e.getMessage());
+            log.info("Sending Avro event to saga topic: {} | Transaction ID: {}", sagaTopic, eventAvro.getTransactionId());
+            eventAvroKafkaTemplate.send(sagaTopic, eventAvro.getTransactionId().toString(), eventAvro);
+            log.info("Avro event sent successfully");
+        } catch (Exception e) {
+            log.error("Error sending Avro event to saga topic: {}", e.getMessage(), e);
+            throw new RuntimeException("Failed to send Avro event", e);
         }
     }
 

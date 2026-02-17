@@ -1,29 +1,44 @@
 package ecommerce_micro.project.orderservice_ms.adapters.inbound.messaging.consumer.event;
 
-import ecommerce_micro.project.orderservice_ms.utils.JsonUtil;
+import ecommerce_micro.project.orderservice_ms.adapters.outbound.messaging.avro.EventAvro;
 import lombok.RequiredArgsConstructor;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
-
 
 @Component
 @RequiredArgsConstructor
 public class EventConsumer {
 
     private static final Logger log = LoggerFactory.getLogger(EventConsumer.class);
-    private final JsonUtil jsonUtil;
 
-    @KafkaListener(topics = "${spring.kafka.topic.notify-end}",
-            groupId = "${spring.kafka.consumer.group-id}")
-    public void consumeEvent(String payload) {
+    @KafkaListener(
+            topics = "${spring.kafka.consumer.topic.notify-end}",
+            groupId = "${spring.kafka.consumer.group-id}",
+            containerFactory = "eventAvroKafkaListenerContainerFactory"
+    )
+
+    public void consumeEvent(ConsumerRecord<String, EventAvro> record, Acknowledgment acknowledgment) {
         try {
-            log.info("Received payload from topic notify end: {}", payload);
-            var eventDomain = jsonUtil.toEventDomain(payload);
-            log.info("Converted message to EventDomain: {}", eventDomain);
+            EventAvro eventAvro = record.value();
+
+            log.info("Received Avro event from notify-end | Transaction ID: {} | Status: {}",
+                    eventAvro.getTransactionId(), eventAvro.getStatus());
+
+            processEvent(eventAvro);
+
+            acknowledgment.acknowledge();
+            log.info("Avro event processed successfully");
         } catch (Exception e) {
-            log.error("Error processing message: {}", e.getMessage());
+            log.error("Error processing Avro event: {}", e.getMessage(), e);
         }
+    }
+
+    private void processEvent(EventAvro eventAvro) {
+        log.info("Processing event | Order ID: {} | Status: {}",
+                eventAvro.getOrderId(), eventAvro.getStatus());
     }
 }
