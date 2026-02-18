@@ -30,6 +30,7 @@
 		<java.version>17</java.version>
 		<avro.version>1.11.3</avro.version>
 		<confluent.version>7.5.0</confluent.version>
+        <org.mapstruct.version>1.6.3</org.mapstruct.version>
 	</properties>
 
 	<repositories>
@@ -45,6 +46,11 @@
 			<artifactId>avro</artifactId>
 			<version>${avro.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
 		<dependency>
 			<groupId>io.confluent</groupId>
 			<artifactId>kafka-avro-serializer</artifactId>
@@ -151,6 +157,11 @@
 							<artifactId>lombok</artifactId>
 							<version>1.18.36</version>
 						</path>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
