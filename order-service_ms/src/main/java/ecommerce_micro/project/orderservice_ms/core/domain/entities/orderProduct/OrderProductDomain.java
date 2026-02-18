@@ -1,6 +1,6 @@
-package ecommerce_micro.project.orderservice_ms.domain.orderProduct;
+package ecommerce_micro.project.orderservice_ms.core.domain.entities.orderProduct;
 
-import ecommerce_micro.project.orderservice_ms.domain.product.ProductDomain;
+import ecommerce_micro.project.orderservice_ms.core.domain.entities.product.ProductDomain;
 
 public class OrderProductDomain {
 
@@ -10,10 +10,6 @@ public class OrderProductDomain {
     public OrderProductDomain() {
     }
 
-    public OrderProductDomain(ProductDomain product, int quantity) {
-        this.product = product;
-        this.quantity = quantity;
-    }
 
     public ProductDomain getProduct() {
         return product;

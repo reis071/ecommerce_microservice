@@ -1,6 +1,6 @@
-package ecommerce_micro.project.orderservice_ms.domain.order;
+package ecommerce_micro.project.orderservice_ms.core.domain.entities.order;
 
-import ecommerce_micro.project.orderservice_ms.domain.orderProduct.OrderProductDomain;
+import ecommerce_micro.project.orderservice_ms.core.domain.entities.orderProduct.OrderProductDomain;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,14 +17,6 @@ public class OrderDomain {
     public OrderDomain() {
     }
 
-    public OrderDomain(String id, List<OrderProductDomain> orderProducts, LocalDateTime createdAt, String transactionId, double totalAmount, int totalItems) {
-        this.id = id;
-        this.products = orderProducts;
-        this.createdAt = createdAt;
-        this.transactionId = transactionId;
-        this.totalAmount = totalAmount;
-        this.totalItems = totalItems;
-    }
 
     public String getId() {
         return id;
@@ -34,12 +26,12 @@ public class OrderDomain {
         this.id = id;
     }
 
-    public List<OrderProductDomain> getOrderProducts() {
+    public List<OrderProductDomain> getProducts() {
         return products;
     }
 
-    public void setOrderProducts(List<OrderProductDomain> orderProducts) {
-        this.products = orderProducts;
+    public void setProducts(List<OrderProductDomain> products) {
+        this.products = products;
     }
 
     public LocalDateTime getCreatedAt() {

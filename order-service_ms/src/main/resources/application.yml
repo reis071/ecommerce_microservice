@@ -26,8 +26,12 @@ spring:
 
 
   mongodb:
-      uri: ${MONGO_DB_URI:mongodb://admin:admin@localhost:27017}
-      database: admin
+    port: 27017
+    authentication-database: admin
+    database: order_db
+    password: admin
+    username: admin
+    host: localhost
 
 logging:
   level:

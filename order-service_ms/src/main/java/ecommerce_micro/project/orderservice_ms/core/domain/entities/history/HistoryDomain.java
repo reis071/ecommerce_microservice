@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.domain.history;
+package ecommerce_micro.project.orderservice_ms.core.domain.entities.history;
 
 import ecommerce_micro.project.orderservice_ms.config.mskafka.settings.enums.ESagaStatus;
 
@@ -14,12 +14,6 @@ public class HistoryDomain {
     public HistoryDomain() {
     }
 
-    public HistoryDomain(String source, ESagaStatus status, String message, LocalDateTime createdAt) {
-        this.source = source;
-        this.status = status;
-        this.message = message;
-        this.createdAt = createdAt;
-    }
 
     public String getMessage() {
         return message;
