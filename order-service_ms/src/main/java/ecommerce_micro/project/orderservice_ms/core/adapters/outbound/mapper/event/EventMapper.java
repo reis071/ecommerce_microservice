@@ -10,6 +10,10 @@ import org.mapstruct.Mapper;
 public interface EventMapper {
 
     EventEntity toEntity(EventDomain eventDomain);
-    EventDomain toDomain(EventEntity eventEntity);
     EventAvro toAvro(EventDomain eventDomain);
+
+    EventDomain toDomain(EventEntity eventEntity);
+    EventDomain toDomain(EventAvro eventAvro);
+
+
 }

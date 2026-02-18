@@ -1,6 +1,9 @@
 package ecommerce_micro.project.orderservice_ms.core.adapters.inbound.messaging.consumer.event;
 
 import ecommerce_micro.project.orderservice_ms.adapters.outbound.avro.EventAvro;
+import ecommerce_micro.project.orderservice_ms.core.adapters.outbound.mapper.event.EventMapper;
+import ecommerce_micro.project.orderservice_ms.core.adapters.outbound.repositories.impl.event.EventImpl;
+import ecommerce_micro.project.orderservice_ms.core.domain.entities.event.EventDomain;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
@@ -14,6 +17,8 @@ import org.springframework.stereotype.Component;
 public class EventConsumer {
 
     private static final Logger log = LoggerFactory.getLogger(EventConsumer.class);
+    private final EventImpl eventImpl;
+    private final EventMapper eventMapper;
 
     @KafkaListener(
             topics = "${spring.kafka.consumer.topic.notify-end}",
@@ -40,5 +45,8 @@ public class EventConsumer {
     private void processEvent(EventAvro eventAvro) {
         log.info("Processing event | Order ID: {} | Status: {}",
                 eventAvro.getOrderId(), eventAvro.getStatus());
+        EventDomain eventDomain =  eventMapper.toDomain(eventAvro);
+
+        eventImpl.save(eventDomain);
     }
 }
