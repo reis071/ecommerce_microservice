@@ -1,11 +1,10 @@
-package ecommerce_micro.project.orderservice_ms.domain.event;
+package ecommerce_micro.project.orderservice_ms.core.domain.entities.event;
 
-import ecommerce_micro.project.orderservice_ms.config.mskafka.settings.enums.EEventSource;
-import ecommerce_micro.project.orderservice_ms.config.mskafka.settings.enums.ESagaStatus;
-import ecommerce_micro.project.orderservice_ms.domain.history.HistoryDomain;
-import ecommerce_micro.project.orderservice_ms.domain.order.OrderDomain;
+import ecommerce_micro.project.orderservice_ms.core.domain.entities.history.HistoryDomain;
+import ecommerce_micro.project.orderservice_ms.core.domain.entities.order.OrderDomain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventDomain {
@@ -16,7 +15,7 @@ public class EventDomain {
     private OrderDomain payload;
     private String source;
     private String status;
-    private List<HistoryDomain> history;
+    private List<HistoryDomain> eventHistory = new ArrayList<>();
     private LocalDateTime    createdAt;
 
     public EventDomain() {
@@ -70,12 +69,12 @@ public class EventDomain {
         this.status = status;
     }
 
-    public List<HistoryDomain> getHistory() {
-        return history;
+    public List<HistoryDomain> getEventHistory() {
+        return eventHistory;
     }
 
-    public void setHistory(List<HistoryDomain> history) {
-        this.history = history;
+    public void setEventHistory(List<HistoryDomain> eventHistory) {
+        this.eventHistory = eventHistory;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -95,7 +94,7 @@ public class EventDomain {
                 ", payload=" + payload +
                 ", source='" + source + '\'' +
                 ", status='" + status + '\'' +
-                ", history=" + history +
+                ", eventHistory=" + eventHistory +
                 ", createdAt=" + createdAt +
                 '}';
     }

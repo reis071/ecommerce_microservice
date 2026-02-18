@@ -1,6 +1,6 @@
-package ecommerce_micro.project.orderservice_ms.adapters.inbound.messaging.consumer.event;
+package ecommerce_micro.project.orderservice_ms.core.adapters.inbound.messaging.consumer.event;
 
-import ecommerce_micro.project.orderservice_ms.adapters.outbound.messaging.avro.EventAvro;
+import ecommerce_micro.project.orderservice_ms.adapters.outbound.avro.EventAvro;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;

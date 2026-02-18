@@ -1,6 +1,6 @@
-package ecommerce_micro.project.orderservice_ms.adapters.outbound.messaging.producer.saga;
+package ecommerce_micro.project.orderservice_ms.core.adapters.outbound.producer.saga;
 
-import ecommerce_micro.project.orderservice_ms.adapters.outbound.messaging.avro.EventAvro;
+import ecommerce_micro.project.orderservice_ms.adapters.outbound.avro.EventAvro;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

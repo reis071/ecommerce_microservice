@@ -1,6 +1,6 @@
 package ecommerce_micro.project.orderservice_ms.config.mskafka;
 
-import ecommerce_micro.project.orderservice_ms.adapters.outbound.messaging.avro.EventAvro;
+import ecommerce_micro.project.orderservice_ms.adapters.outbound.avro.EventAvro;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
@@ -21,9 +21,6 @@ import org.springframework.kafka.listener.ContainerProperties;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.kafka.core.*;
-
-
 
 
 @EnableKafka

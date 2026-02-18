@@ -1,7 +1,7 @@
 {
   "type": "record",
   "name": "EventAvro",
-  "namespace": "ecommerce_micro.project.orderservice_ms.adapters.outbound.messaging.avro",
+  "namespace": "ecommerce_microservice.order-service_ms.target.generated-sources.avro",
   "fields": [
     {
       "name": "id",
@@ -20,7 +20,7 @@
       "type": {
         "type": "record",
         "name": "OrderAvro",
-        "namespace": "ecommerce_micro.project.orderservice_ms.adapters.outbound.messaging.avro",
+        "namespace": "ecommerce_microservice.order-service_ms.target.generated-sources.avro",
         "fields": [
           {
             "name": "id",
@@ -33,14 +33,14 @@
               "items": {
                 "type": "record",
                 "name": "OrderProductsAvro",
-                "namespace": "ecommerce_micro.project.orderservice_ms.adapters.outbound.messaging.avro",
+                "namespace": "ecommerce_microservice.order-service_ms.target.generated-sources.avro",
                 "fields": [
                   {
                     "name": "product",
                     "type": {
                       "type": "record",
                       "name": "ProductAvro",
-                      "namespace": "ecommerce_micro.project.orderservice_ms.adapters.outbound.messaging.avro",
+                      "namespace": "ecommerce_microservice.order-service_ms.target.generated-sources.avro",
                       "fields": [
                         {
                           "name": "code",
