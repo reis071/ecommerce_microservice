@@ -2,6 +2,7 @@ package ecommerce_micro.project.orchestratorservice_ms.config.kafka.settings.enu
 
 public enum EEventSource {
 
+    ORDER_SERVICE,
     ORCHESTRATOR,
     PRODUCT_VALIDATOR_SERVICE,
     PAYMENT_SERVICE,

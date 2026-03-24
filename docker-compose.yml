@@ -32,62 +32,62 @@ services:
             - ms_net
 
 
-    product-db:
-            image: postgres:16-alpine
-            container_name: product-postgres
-            environment:
-              - POSTGRES_DB=product
-              - POSTGRES_USER=product
-              - POSTGRES_PASSWORD=product
-            ports:
-              - "5433:5432"
-            volumes:
-              - product_data:/var/lib/postgresql/data
-            healthcheck:
-              test: ["CMD-SHELL", "pg_isready -U product -d product"]
-              interval: 10s
-              timeout: 5s
-              retries: 5
-            networks:
-              - ms_net
+#    product-db:
+#            image: postgres:16-alpine
+#            container_name: product-postgres
+#            environment:
+#              - POSTGRES_DB=product
+#              - POSTGRES_USER=product
+#              - POSTGRES_PASSWORD=product
+#            ports:
+#              - "5433:5432"
+#            volumes:
+#              - product_data:/var/lib/postgresql/data
+#            healthcheck:
+#              test: ["CMD-SHELL", "pg_isready -U product -d product"]
+#              interval: 10s
+#              timeout: 5s
+#              retries: 5
+#            networks:
+#              - ms_net
 
-    payment-db:
-            image: postgres:16-alpine
-            container_name: payment-postgres
-            environment:
-              - POSTGRES_DB=payment
-              - POSTGRES_USER=payment
-              - POSTGRES_PASSWORD=payment
-            ports:
-              - "5434:5432"
-            volumes:
-              - payment_data:/var/lib/postgresql/data
-            healthcheck:
-              test: [ "CMD-SHELL", "pg_isready -U payment -d payment" ]
-              interval: 10s
-              timeout: 5s
-              retries: 5
-            networks:
-              - ms_net
+#    payment-db:
+#            image: postgres:16-alpine
+#            container_name: payment-postgres
+#            environment:
+#              - POSTGRES_DB=payment
+#              - POSTGRES_USER=payment
+#              - POSTGRES_PASSWORD=payment
+#            ports:
+#              - "5434:5432"
+#            volumes:
+#              - payment_data:/var/lib/postgresql/data
+#            healthcheck:
+#              test: [ "CMD-SHELL", "pg_isready -U payment -d payment" ]
+#              interval: 10s
+#              timeout: 5s
+#              retries: 5
+#            networks:
+#              - ms_net
 
-    inventory-db:
-            image: postgres:16-alpine
-            container_name: invetory-postgres
-            environment:
-              - POSTGRES_DB=inventory
-              - POSTGRES_USER=inventory
-              - POSTGRES_PASSWORD=inventory
-            ports:
-              - "5435:5432"
-            volumes:
-              - inventory_data:/var/lib/postgresql/data
-            healthcheck:
-              test: [ "CMD-SHELL", "pg_isready -U inventory -d inventory" ]
-              interval: 10s
-              timeout: 5s
-              retries: 5
-            networks:
-              - ms_net
+#    inventory-db:
+#            image: postgres:16-alpine
+#            container_name: invetory-postgres
+#            environment:
+#              - POSTGRES_DB=inventory
+#              - POSTGRES_USER=inventory
+#              - POSTGRES_PASSWORD=inventory
+#            ports:
+#              - "5435:5432"
+#            volumes:
+#              - inventory_data:/var/lib/postgresql/data
+#            healthcheck:
+#              test: [ "CMD-SHELL", "pg_isready -U inventory -d inventory" ]
+#              interval: 10s
+#              timeout: 5s
+#              retries: 5
+#            networks:
+#              - ms_net
 
 
     kafka:
@@ -137,103 +137,103 @@ services:
         - kafka
         - schema-registry
 
-    accounts-api:
-            build:
-              context: ./accounts-api
-              dockerfile: Dockerfile
-            container_name: accounts-api
-            restart: on-failure
-            networks:
-              - ms_net
-            ports:
-              - "8081:8081"
-            environment:
-              SPRING_DATASOURCE_URL: jdbc:postgresql://accounts-postgres:5432/account
-              SPRING_DATASOURCE_USERNAME: account
-              SPRING_DATASOURCE_PASSWORD: account
-            depends_on:
-              account-db:
-                condition: service_healthy
-            healthcheck:
-              test: ["CMD", "curl", "-f", "http://localhost:8081/actuator/health"]
-              interval: 30s
-              timeout: 10s
-              retries: 3
-              start_period: 40s
-
-    order-service:
-            build:
-              context: ./order-service_ms
-              dockerfile: Dockerfile
-            container_name: order-service
-            restart: on-failure
-            networks:
-              - ms_net
-            ports:
-              - "8083:8083"
-            environment:
-              KAFKA_BROKER: kafka:29092
-              MONGO_DB_URI: mongodb://admin:admin@order-mongo:27017
-            depends_on:
-              kafka:
-                condition: service_started
-              order-db:
-                condition: service_started
-            healthcheck:
-              test: ["CMD", "curl", "-f", "http://localhost:8083/actuator/health"]
-              interval: 30s
-              timeout: 10s
-              retries: 3
-              start_period: 40s
-
-    product-validation:
-            build:
-              context: ./product_validation-service_ms
-              dockerfile: Dockerfile
-            container_name: product-validation
-            restart: on-failure
-            networks:
-              - ms_net
-            ports:
-              - "8082:8082"
-            environment:
-              SPRING_DATASOURCE_URL: jdbc:postgresql://product-postgres:5432/product
-              SPRING_DATASOURCE_USERNAME: product
-              SPRING_DATASOURCE_PASSWORD: product
-              SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
-            depends_on:
-              product-db:
-                condition: service_healthy
-              kafka:
-                condition: service_started
-            healthcheck:
-              test: ["CMD", "curl", "-f", "http://localhost:8082/actuator/health"]
-              interval: 30s
-              timeout: 10s
-              retries: 3
-              start_period: 40s
-
-    orchestrator-service:
-            build:
-              context: ./orchestrator-service_ms
-              dockerfile: Dockerfile
-            container_name: orchestrator-service
-            restart: on-failure
-            networks:
-              - ms_net
-            ports:
-              - "8090:8090"
-            environment:
-              SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
-            depends_on:
-              kafka:
-                condition: service_started
-            healthcheck:
-              test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health"]
-              interval: 30s
-              timeout: 10s
-              retries: 3
-              start_period: 40s
+#    accounts-api:
+#            build:
+#              context: ./accounts-api
+#              dockerfile: Dockerfile
+#            container_name: accounts-api
+#            restart: on-failure
+#            networks:
+#              - ms_net
+#            ports:
+#              - "8081:8081"
+#            environment:
+#              SPRING_DATASOURCE_URL: jdbc:postgresql://accounts-postgres:5432/account
+#              SPRING_DATASOURCE_USERNAME: account
+#              SPRING_DATASOURCE_PASSWORD: account
+#            depends_on:
+#              account-db:
+#                condition: service_healthy
+#            healthcheck:
+#              test: ["CMD", "curl", "-f", "http://localhost:8081/actuator/health"]
+#              interval: 30s
+#              timeout: 10s
+#              retries: 3
+#              start_period: 40s
+#
+#    order-service:
+#            build:
+#              context: ./order-service_ms
+#              dockerfile: Dockerfile
+#            container_name: order-service
+#            restart: on-failure
+#            networks:
+#              - ms_net
+#            ports:
+#              - "8083:8083"
+#            environment:
+#              KAFKA_BROKER: kafka:29092
+#              MONGO_DB_URI: mongodb://admin:admin@order-mongo:27017
+#            depends_on:
+#              kafka:
+#                condition: service_started
+#              order-db:
+#                condition: service_started
+#            healthcheck:
+#              test: ["CMD", "curl", "-f", "http://localhost:8083/actuator/health"]
+#              interval: 30s
+#              timeout: 10s
+#              retries: 3
+#              start_period: 40s
+#
+#    product-validation:
+#            build:
+#              context: ./product_validation-service_ms
+#              dockerfile: Dockerfile
+#            container_name: product-validation
+#            restart: on-failure
+#            networks:
+#              - ms_net
+#            ports:
+#              - "8082:8082"
+#            environment:
+#              SPRING_DATASOURCE_URL: jdbc:postgresql://product-postgres:5432/product
+#              SPRING_DATASOURCE_USERNAME: product
+#              SPRING_DATASOURCE_PASSWORD: product
+#              SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+#            depends_on:
+#              product-db:
+#                condition: service_healthy
+#              kafka:
+#                condition: service_started
+#            healthcheck:
+#              test: ["CMD", "curl", "-f", "http://localhost:8082/actuator/health"]
+#              interval: 30s
+#              timeout: 10s
+#              retries: 3
+#              start_period: 40s
+#
+#    orchestrator-service:
+#            build:
+#              context: ./orchestrator-service_ms
+#              dockerfile: Dockerfile
+#            container_name: orchestrator-service
+#            restart: on-failure
+#            networks:
+#              - ms_net
+#            ports:
+#              - "8090:8090"
+#            environment:
+#              SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+#            depends_on:
+#              kafka:
+#                condition: service_started
+#            healthcheck:
+#              test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health"]
+#              interval: 30s
+#              timeout: 10s
+#              retries: 3
+#              start_period: 40s
 
 
 volumes:
