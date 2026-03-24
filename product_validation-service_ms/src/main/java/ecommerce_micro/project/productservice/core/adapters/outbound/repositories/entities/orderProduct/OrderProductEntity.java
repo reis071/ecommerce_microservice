@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.core.adapters.outbound.repositories.entities.orderProduct;
+package ecommerce_micro.project.productservice.core.adapters.outbound.repositories.entities.orderProduct;
 
 import ecommerce_micro.project.orderservice_ms.core.adapters.outbound.repositories.entities.product.ProductEntity;
 import lombok.AllArgsConstructor;

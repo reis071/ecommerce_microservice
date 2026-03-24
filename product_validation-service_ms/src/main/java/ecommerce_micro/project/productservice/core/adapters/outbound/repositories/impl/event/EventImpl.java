@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.core.adapters.outbound.repositories.impl.event;
+package ecommerce_micro.project.productservice.core.adapters.outbound.repositories.impl.event;
 
 import ecommerce_micro.project.orderservice_ms.core.adapters.outbound.mapper.event.EventMapper;
 import ecommerce_micro.project.orderservice_ms.core.adapters.outbound.repositories.entities.event.EventEntity;

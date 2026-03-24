@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.core.domain.entities.event;
+package ecommerce_micro.project.productservice.core.domain.entities.event;
 
 import ecommerce_micro.project.orderservice_ms.core.domain.entities.history.HistoryDomain;
 import ecommerce_micro.project.orderservice_ms.core.domain.entities.order.OrderDomain;

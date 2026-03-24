@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.core.application.service.order;
+package ecommerce_micro.project.productservice.core.application.service.order;
 
 import ecommerce_micro.project.avro.Event;
 import ecommerce_micro.project.orderservice_ms.config.mskafka.settings.enums.EEventSource;

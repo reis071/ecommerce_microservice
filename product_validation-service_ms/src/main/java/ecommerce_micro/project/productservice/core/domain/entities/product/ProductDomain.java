@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.core.domain.entities.product;
+package ecommerce_micro.project.productservice.core.domain.entities.product;
 
 
 public class ProductDomain {

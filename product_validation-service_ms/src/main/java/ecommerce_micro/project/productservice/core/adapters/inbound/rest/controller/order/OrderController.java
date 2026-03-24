@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.core.adapters.inbound.rest.controller.order;
+package ecommerce_micro.project.productservice.core.adapters.inbound.rest.controller.order;
 
 import ecommerce_micro.project.orderservice_ms.core.application.dtoRequest.order.OrderDTORequest;
 import ecommerce_micro.project.orderservice_ms.core.application.service.order.OrderService;

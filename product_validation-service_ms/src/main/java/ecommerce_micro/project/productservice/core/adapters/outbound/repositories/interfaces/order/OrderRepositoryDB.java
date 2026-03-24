@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.core.adapters.outbound.repositories.interfaces.order;
+package ecommerce_micro.project.productservice.core.adapters.outbound.repositories.interfaces.order;
 
 import ecommerce_micro.project.orderservice_ms.core.adapters.outbound.repositories.entities.order.OrderEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;

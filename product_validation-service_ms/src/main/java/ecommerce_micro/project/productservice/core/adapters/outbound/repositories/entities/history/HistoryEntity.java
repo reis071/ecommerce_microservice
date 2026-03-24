@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.core.adapters.outbound.repositories.entities.history;
+package ecommerce_micro.project.productservice.core.adapters.outbound.repositories.entities.history;
 
 
 import ecommerce_micro.project.orderservice_ms.config.mskafka.settings.enums.ESagaStatus;

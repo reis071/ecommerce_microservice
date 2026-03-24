@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.core.adapters.inbound.messaging.consumer.event;
+package ecommerce_micro.project.productservice.core.adapters.inbound.messaging.consumer.event;
 
 import ecommerce_micro.project.avro.Event;
 import ecommerce_micro.project.orderservice_ms.core.adapters.outbound.mapper.event.EventMapper;

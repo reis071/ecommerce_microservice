@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.core.adapters.outbound.mapper.order;
+package ecommerce_micro.project.productservice.core.adapters.outbound.mapper.order;
 
 import ecommerce_micro.project.orderservice_ms.core.adapters.outbound.repositories.entities.order.OrderEntity;
 import ecommerce_micro.project.orderservice_ms.core.domain.entities.order.OrderDomain;

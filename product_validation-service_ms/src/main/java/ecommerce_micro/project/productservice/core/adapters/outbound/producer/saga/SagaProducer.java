@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.core.adapters.outbound.producer.saga;
+package ecommerce_micro.project.productservice.core.adapters.outbound.producer.saga;
 
 import ecommerce_micro.project.avro.Event;
 import lombok.RequiredArgsConstructor;

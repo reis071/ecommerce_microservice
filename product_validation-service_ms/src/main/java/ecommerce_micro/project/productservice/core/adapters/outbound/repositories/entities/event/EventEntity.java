@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.core.adapters.outbound.repositories.entities.event;
+package ecommerce_micro.project.productservice.core.adapters.outbound.repositories.entities.event;
 
 import ecommerce_micro.project.orderservice_ms.core.adapters.outbound.repositories.entities.history.HistoryEntity;
 import ecommerce_micro.project.orderservice_ms.core.adapters.outbound.repositories.entities.order.OrderEntity;

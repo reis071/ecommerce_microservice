@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.core.application.usecases.event;
+package ecommerce_micro.project.productservice.core.application.usecases.event;
 
 
 public interface EventUseCases {

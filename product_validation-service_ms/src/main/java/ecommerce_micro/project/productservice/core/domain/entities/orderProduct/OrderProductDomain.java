@@ -1,4 +1,4 @@
-package ecommerce_micro.project.orderservice_ms.core.domain.entities.orderProduct;
+package ecommerce_micro.project.productservice.core.domain.entities.orderProduct;
 
 import ecommerce_micro.project.orderservice_ms.core.domain.entities.product.ProductDomain;
 
